@@ -63,7 +63,7 @@
                           </button>
                         </div>
                         <div class="modal-body" style>
-                          <form  [formGroup]="form" novalidate>
+                          <form>
                             <div class="form-group" style="
                             border-bottom: 3px solid #999;
                             border-top: 3px solid #999;
@@ -75,7 +75,7 @@
                               border-bottom: 1px solid #555;
                               padding-top: 15px;
                           ">
-                                <input type="checkbox" (change)="onCheckboxChange($event)" [value]="prds.order_prd_id" *ngIf="prds.status != '취소'"> <span>
+                                <input type="checkbox" (change)="onCheckboxChange($event, prds.order_prd_id)" [value]="prds.order_prd_id" *ngIf="prds.status != '취소'"> <span>
                                   {{prds.prd_name}}
                                 </span>
                                 <div style="

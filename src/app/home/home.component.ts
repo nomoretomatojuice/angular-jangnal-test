@@ -4,11 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import {
   FormBuilder,
   FormGroup,
-  FormArray,
-  FormControl,
-  Validators,
 } from '@angular/forms';
-import { ValueTransformer } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-home',
@@ -23,9 +19,6 @@ export class HomeComponent implements OnInit {
   _checkArray: any;
 
   constructor(private modalService: NgbModal, private fb: FormBuilder) {
-    this.form = this.fb.group({
-      checkArray: this.fb.array([], [Validators.required]),
-    });
   }
 
   ngOnInit(): void {}
@@ -60,23 +53,13 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onCheckboxChange(e) {
-    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
+  onCheckboxChange(e, idid) {
     if (e.target.checked) {
-      checkArray.push(new FormControl(e.target.value));
-      this._checkArray = checkArray.value;
+      this._checkArray.push(idid);
       console.log(this._checkArray)
     } else {
-      let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {
-        if (item.value == e.target.value) {
-          checkArray.removeAt(i);
-          this._checkArray = checkArray.value;
-          console.log(this._checkArray)
-          return;
-        }
-        i++;
-      });
+      const r_Index = this._checkArray.findIndex((x) => x.order_prd_id == idid);
+      this._checkArray.splice(r_Index, 1);
     }
   }
 
@@ -96,6 +79,8 @@ export class HomeComponent implements OnInit {
         dlv_prd[n_Index].status = '취소';
       } else return;
     });
+    this._checkArray = [];
+    console.log(this._checkArray);
   }
 
   return(idid) {
