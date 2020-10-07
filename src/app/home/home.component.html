@@ -49,7 +49,12 @@
                     <td>{{dlv.time}}</td>
                     <td>{{dlv.requesttime}}</td>
                     <td>{{dlv.market}}</td>
-                    <td><div class="prds_long"><span *ngFor="let prds of dlv.products_dt">{{prds.prd_name}} {{prds.prd_opt}} {{prds.quantity}}개, </span></div></td>
+                    <td><div class="prds_long">
+                      <span *ngFor="let prds of dlv.products_dt">
+                        <span *ngIf="prds.status == 0">{{prds.prd_name}} {{prds.prd_opt}} {{prds.quantity}}개,</span>
+                        <span *ngIf="prds.status == '취소'" style="color: red;">{{prds.prd_name}} {{prds.prd_opt}} {{prds.quantity}}개,</span>
+                        <span *ngIf="prds.status == '반품/교환'" style="color: blue;">{{prds.prd_name}} {{prds.prd_opt}} {{prds.quantity}}개,</span>
+                      </span></div></td>
                     <td>{{dlv.mem_info}}</td>
                     <td>
                       <ng-template #content let-modal>
@@ -75,32 +80,61 @@
                               border-bottom: 1px solid #555;
                               padding-top: 15px;
                           ">
-                                <input type="checkbox" (change)="onCheckboxChange($event, prds.order_prd_id)" [value]="prds.order_prd_id" *ngIf="prds.status != '취소'"> <span>
-                                  {{prds.prd_name}}
-                                </span>
-                                <div style="
-                                color: #777;
-                                font-size: 13px;
-                                padding-top: 5px;
-                            ">
-                                  기본: {{prds.prd_cost}}원
-                                </div>
-                                <div style="
-                                color: #777;
-                                font-size: 13px;
-                                padding-top: 5px;
-                            ">
-                                  -옵션: {{prds.prd_opt}}
-                                </div>
-                                <div style="
-                                float: right;
-                            ">
-                                  {{prds.prd_price}}
-                                  <span *ngIf="prds.status != 0">
-                                    {{prds.status}}
+                                <!--정상-->
+                                <input type="checkbox" (change)="onCheckboxChange($event, prds.order_prd_id)" [value]="prds.order_prd_id" *ngIf="prds.status != '취소'">
+                                <span *ngIf="prds.status == 0">
+                                  <span>
+                                    {{prds.prd_name}}
                                   </span>
-                                </div>
-
+                                  <div style="color: #777;font-size: 13px;padding-top: 5px;">
+                                    기본: {{prds.prd_cost}}원
+                                  </div>
+                                  <div style="color: #777;font-size: 13px;padding-top: 5px;">
+                                    -옵션: {{prds.prd_opt}}
+                                  </div>
+                                  <div style="float: right;">
+                                    {{prds.prd_price}} 원
+                                    <span *ngIf="prds.status != 0">
+                                      {{prds.status}}
+                                    </span>
+                                  </div>
+                                </span>
+                                <!--취소-->
+                                <span *ngIf="prds.status == '취소'" style="color: red;">
+                                  <span>
+                                    {{prds.prd_name}}
+                                  </span>
+                                  <div style="color: #777;font-size: 13px;padding-top: 5px;">
+                                    기본: {{prds.prd_cost}}원
+                                  </div>
+                                  <div style="color: #777;font-size: 13px;padding-top: 5px;">
+                                    -옵션: {{prds.prd_opt}}
+                                  </div>
+                                  <div style="float: right;">
+                                    {{prds.prd_price}} 원
+                                    <span *ngIf="prds.status != 0">
+                                      {{prds.status}}
+                                    </span>
+                                  </div>
+                                </span>
+                                <!--반품/교환-->
+                                <span *ngIf="prds.status == '반품/교환'" style="color: blue;">
+                                  <span>
+                                    {{prds.prd_name}}
+                                  </span>
+                                  <div style="color: #777;font-size: 13px;padding-top: 5px;">
+                                    기본: {{prds.prd_cost}}원
+                                  </div>
+                                  <div style="color: #777;font-size: 13px;padding-top: 5px;">
+                                    -옵션: {{prds.prd_opt}}
+                                  </div>
+                                  <div style="float: right;">
+                                    {{prds.prd_price}} 원
+                                    <span *ngIf="prds.status != 0">
+                                      {{prds.status}}
+                                    </span>
+                                  </div>
+                                </span>
                               </div>
                             </div>
                           </form>
