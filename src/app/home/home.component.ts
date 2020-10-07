@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Delivery } from '../mock-delivery';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {DropdownModule} from 'primeng/dropdown';
 
 @Component({
   selector: 'app-home',

@@ -52,26 +52,62 @@
                     <td><div class="prds_long"><span *ngFor="let prds of dlv.products_dt">{{prds.prd_name}} {{prds.prd_opt}} {{prds.quantity}}개, </span></div></td>
                     <td>{{dlv.mem_info}}</td>
                     <td>
-                        <ng-template #content let-modal>
-                            <div class="modal-header">
-                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <form>
-                                <div class="form-group">
-                                  <div *ngFor="let prds of dlv.products_dt">
-                                    <input type="checkbox"> {{prds.prd_name}} {{prds.prd_cost}} {{prds.prd_opt}} {{prds.prd_price}}
-                                  </div>
+                      <ng-template #content let-modal>
+                        <div style="
+                        height: 500px;">
+                        <div class="modal-header" style="
+                        border: none;
+                    ">
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style>
+                          <form>
+                            <div class="form-group" style="
+                            border-bottom: 3px solid #999;
+                            border-top: 3px solid #999;
+                            /* padding-top: 30px; */
+                            /* padding-bottom: 30px; */
+                        ">
+                              <div *ngFor="let prds of dlv.products_dt" style="
+                              height: 130px;
+                              border-bottom: 1px solid #555;
+                              padding-top: 15px;
+                          ">
+                                <input type="checkbox"> <span>
+                                  {{prds.prd_name}}
+                                </span>
+                                <div style="
+                                color: #777;
+                                font-size: 13px;
+                                padding-top: 5px;
+                            ">
+                                  기본: {{prds.prd_cost}}원
                                 </div>
-                              </form>
+                                <div style="
+                                color: #777;
+                                font-size: 13px;
+                                padding-top: 5px;
+                            ">
+                                  -옵션: {{prds.prd_opt}}
+                                </div>
+                                <div style="
+                                float: right;
+                            ">
+                                  {{prds.prd_price}}원
+                                </div>
+
+                              </div>
                             </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">취소</button>
-                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">반품/교환</button>
-                            </div>
-                          </ng-template>
+                          </form>
+                        </div>
+                        <div class="modal-footer" style="border: none;">
+                          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">취소</button>
+                          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">반품/교환</button>
+                        </div>
+                      </div>
+                        </ng-template>
                           <button class="btn home-btn1" (click)="open(content)">수정</button>
                     </td>
                     <td>
