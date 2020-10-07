@@ -63,19 +63,19 @@
                           </button>
                         </div>
                         <div class="modal-body" style>
-                          <form>
+                          <form  [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
                             <div class="form-group" style="
                             border-bottom: 3px solid #999;
                             border-top: 3px solid #999;
                             /* padding-top: 30px; */
                             /* padding-bottom: 30px; */
                         ">
-                              <div *ngFor="let prds of dlv.products_dt" style="
+                              <div *ngFor="let prds of dlv.products_dt; let i=index" style="
                               height: 130px;
                               border-bottom: 1px solid #555;
                               padding-top: 15px;
                           ">
-                                <input type="checkbox"> <span>
+                                <input type="checkbox" (change)="onCheckboxChange($event)" [value]="prds.order_prd_id" > <span>
                                   {{prds.prd_name}}
                                 </span>
                                 <div style="
@@ -96,14 +96,17 @@
                                 float: right;
                             ">
                                   {{prds.prd_price}}원
+                                  {{prds.status}}
                                 </div>
 
                               </div>
                             </div>
+                            <input type="submit" value="Submit">
                           </form>
+
                         </div>
                         <div class="modal-footer" style="border: none;">
-                          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">취소</button>
+                          <button type="button" class="btn btn-outline-dark"  (click)="cancel(dlv.id)">취소</button>
                           <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">반품/교환</button>
                         </div>
                       </div>
