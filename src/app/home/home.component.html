@@ -1,0 +1,129 @@
+<div class="home">
+  <div _ngcontent-qwr-c102="" style="
+    position: absolute;
+    top: -80px;
+    font-size: 27px;
+    left: 0px;
+    font-weight: 600;
+"> 배송 리스트 </div>
+    <div>
+      <div class="home-up">
+        <select _ngcontent-uub-c102="" style="
+            width: 180px;
+            height: 40px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding-left: 20px;
+            font-size: 19px;
+    font-weight: 600;
+        ">
+          <option _ngcontent-uub-c102="">시장 선택</option>
+          <option _ngcontent-uub-c102="">OO정육점</option>
+        </select>
+        <span _ngcontent-xqd-c102="" style="
+    padding-left: 20px;
+    font-size: 20px;
+    font-weight: 800;
+"> 10:00 ~ 11:00 </span>
+      </div>
+        <table>
+            <thead>
+              <tr _ngcontent-dse-c102=""><td _ngcontent-dse-c102="" style="
+                width: 203px;
+            ">주문 시간</td><td _ngcontent-dse-c102="" style="
+                width: 131px;
+            ">배송 요청 시간</td><td _ngcontent-dse-c102="" style="
+                width: 146px;
+            ">상점</td><td _ngcontent-dse-c102="" style="
+                width: 231px;
+            ">상품</td><td _ngcontent-dse-c102="" style="
+                width: 463px;
+            ">주문자정보</td><td _ngcontent-dse-c102="" style="
+                width: 123px;
+            ">취소/반품/교환</td><td _ngcontent-dse-c102="" style="
+                width: 166px;
+            ">배송</td></tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dlv of delivery">
+                    <td>{{dlv.time}}</td>
+                    <td>{{dlv.requesttime}}</td>
+                    <td>{{dlv.market}}</td>
+                    <td><div class="prds_long"><span *ngFor="let prds of dlv.products_dt">{{prds.prd_name}} {{prds.prd_opt}} {{prds.quantity}}개, </span></div></td>
+                    <td>{{dlv.mem_info}}</td>
+                    <td>
+                        <ng-template #content let-modal>
+                            <div class="modal-header">
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <div *ngFor="let prds of dlv.products_dt">
+                                    <input type="checkbox"> {{prds.prd_name}} {{prds.prd_cost}} {{prds.prd_opt}} {{prds.prd_price}}
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">취소</button>
+                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">반품/교환</button>
+                            </div>
+                          </ng-template>
+                          <button class="btn home-btn1" (click)="open(content)">수정</button>
+                    </td>
+                    <td>
+                        <ng-template #content1 let-modal>
+                          <div style="
+                          height: 500px;">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="modal-basic-title2">배송 상황</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div class="form-group" style="
+                              margin-top: 60px;
+                          ">
+                                <div class="input-group" style="
+                                height: 130px;
+                            ">
+                                  <button type="button" class="btn btn-outline-dark" (click)="status('start', dlv.id)" style="
+                                  margin: auto;
+                                  width: 270px;
+                                  height: 55px;
+                                  background-color: #145cbe;
+                                  border: #145cbe;
+                                  color: white;
+                              ">배송 시작</button>
+                                </div>
+                                <div class="input-group">
+                                  <button type="button" class="btn btn-outline-dark" (click)="status('finish', dlv.id)" style="
+                                  margin: auto;
+                                  height: 55px;
+                                  width: 270px;
+                                  background-color: red;
+                                  border: red;
+                                  color: white;
+                              ">배송 완료</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+
+                          </ng-template>
+                          <button class="btn home-btn2" (click)="open(content1)">수정</button>
+                        <span style="line-height: 75px;">{{getStatus(dlv.id)}}</span>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

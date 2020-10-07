@@ -1,0 +1,95 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+    border-bottom: 3px solid #f5f5f5;
+    line-height: 80px;
+    font-size: 27px;
+    font-weight: 600;
+    padding-left: 30px;
+}
+.side-nav {
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    float: left;
+}
+.side-nav ul {
+  padding-top: 40px;
+  padding-left: 0;
+  width: 90%;
+}
+.side-nav ul li {
+  list-style: none;
+  border-left: 3px solid white;
+}
+.side-nav ul li a {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  color: #555;
+  font-weight: 500;
+  padding-left: 30px;
+}
+.side-nav ul li a:hover {
+  text-decoration: none;
+  background-color: #f5f5f5;
+}
+.active {
+  background-color: #eff9ff;
+  border-left: 3px solid #145cbe !important;
+}
+.active a {
+  color: #145cbe !important;
+}
+.home {
+    width: 1522px;
+    height: 814px;
+    background-color: white;
+    float: right;
+    margin-right: 40px;
+    margin-top: 124px;
+    padding: 37px 45px;
+    position: relative;
+}
+.home table {
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+.home table thead {
+  line-height: 55px;
+  background-color: #f5f6fa;
+}
+.home table tbody tr {
+  height: 97px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.prds_long {
+  width: 231px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-btn1 {
+  width: 72px;
+    height: 43px;
+    background-color: #145cbe;
+    color: white;
+    font-size: 15px;
+}
+.home-btn2 {
+  width: 72px;
+    height: 43px;
+    background-color: #145cbe;
+    color: white;
+    float: left;
+    font-size: 15px;
+    margin-top: 16px;
+}
+.home-up {
+  width: 100%;
+  height: 90px;
+}
